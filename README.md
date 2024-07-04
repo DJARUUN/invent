@@ -1,5 +1,7 @@
 # Invent
 
+**inv**ert + ind**ent** = **invent**
+
 A very serious formatter that does what everyone has been missing. OUTdenting your code!
 Gone are the days of code inside of code being indented two or four or whatever spaces. 
 
