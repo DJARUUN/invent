@@ -10,6 +10,14 @@ import (
 	"unicode"
 )
 
+func calc_indent_level(line, trimmed_line, indent_type string) int {
+	if indent_type != "" {
+		return (len(line) - len(trimmed_line)) / len(indent_type)
+	}
+
+	return 0
+}
+
 func find_indent_type(lines []string) string {
 	for _, line := range lines {
 		trimmed_line := strings.TrimLeftFunc(line, unicode.IsSpace)
@@ -29,7 +37,7 @@ func find_max_indent_level(lines []string, indent_type string) int {
 
 	for _, line := range lines {
 		trimmed_line := strings.TrimLeftFunc(line, unicode.IsSpace)
-		indent_level := (len(line) - len(trimmed_line)) / len(indent_type)
+		indent_level := calc_indent_level(line, trimmed_line, indent_type)
 
 		if indent_level > max_indent_level {
 			max_indent_level = indent_level
@@ -58,7 +66,7 @@ func do_invent(file_path string) error {
 	var new_contents string
 	for i, line := range lines {
 		trimmed_line := strings.TrimLeftFunc(line, unicode.IsSpace)
-		indent_level := (len(line) - len(trimmed_line)) / len(indent_type)
+		indent_level := calc_indent_level(line, trimmed_line, indent_type)
 
 		inverse_indent_level := max_indent_level - indent_level
 		inverse_indent := strings.Repeat(indent_type, inverse_indent_level)
