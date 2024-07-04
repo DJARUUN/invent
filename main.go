@@ -36,7 +36,7 @@ func find_indent_type(lines []string) string {
 
 		if len(trimmed_line) < len(line) {
 			indent_type := line[0:(len(line) - len(trimmed_line))]
-			fmt.Println([]rune(indent_type))
+
 			return indent_type
 		}
 	}
@@ -53,7 +53,6 @@ func find_max_indent_level(lines []string, indent_type string) int {
 
 		if indent_level > max_indent_level {
 			max_indent_level = indent_level
-			fmt.Println(indent_level)
 		}
 	}
 
@@ -88,11 +87,7 @@ func do_invent(file_path string) error {
 		if i < len(lines)-1 {
 			new_contents += "\n"
 		}
-
-		fmt.Println(inverse_indent_level, []rune(inverse_indent))
 	}
-
-	fmt.Println(new_contents)
 
 	err = os.WriteFile(file_path, []byte(new_contents), os.ModeAppend)
 	if err != nil {
