@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io"
+	// "io"
 	"log"
 	"os"
 	"strings"
@@ -40,8 +40,8 @@ func find_max_indent_level(lines []string, indent_type string) int {
 	return max_indent_level
 }
 
-func do_outdent(file *os.File) error {
-	contents, err := io.ReadAll(file)
+func do_outdent(file_path string) error {
+	contents, err := os.ReadFile(file_path)
 	if err != nil {
 		return err
 	}
@@ -74,7 +74,7 @@ func do_outdent(file *os.File) error {
 
 	fmt.Println(new_contents)
 
-	_, err = file.WriteString(new_contents)
+	err = os.WriteFile(file_path, []byte(new_contents), os.ModeAppend)
 	if err != nil {
 		return err
 	}
@@ -98,21 +98,11 @@ func main() {
 	case "--file":
 		file_path := args[1]
 
-		file, err := os.OpenFile(
-			file_path,
-			os.O_APPEND|os.O_CREATE|os.O_WRONLY,
-			os.ModeAppend,
-		)
+		err := do_outdent(file_path)
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer file.Close()
-
-		err = do_outdent(file)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println("* outdented", file.Name())
+		fmt.Println("* outdented", file_path)
 
 	case "--dir":
 
