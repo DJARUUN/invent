@@ -89,8 +89,7 @@ func print_usage() {
     invent --file <file>
 
   directory:
-    invent --dir <dir>
-	`)
+    invent --dir <dir>`)
 	os.Exit(0)
 }
 
