@@ -45,7 +45,7 @@ release:
       links:
         - name: "Executable (Linux)"
           url: ${ARTIFACT1_URL}
-          file_path: "/assets/invent"
+          filepath: "/assets/invent"
 
         - name: "Executable (Windows)"
           url: ${ARTIFACT2_URL}
