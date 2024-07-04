@@ -9,15 +9,17 @@ This tool lets you do the exact opposite. It takes any file or directory you spe
 
 For me this has been the most beneficial change made in my projects boosting both productivity and throughput.
 
-### Installation / usage
+## Installation / usage
 
-Just download the binary for your operating system in the releases.
-If it says `Permission denied` you have to run `chmod +x invent` to give it executable permissions.
+Just download the binary for your operating system from the [releases](https://gitlab.com/djaruun/invent/-/releases).
+If it says something about permission issues you have to run `chmod +x invent` to give it executable permissions.
 
-### Tip
+## Health and Safety
 
-Do not and I mean NOT run this on a directory with a bunch of files that aren't plain text files. There are some attempts to make it ignore those types of files but it may still find it and it will not be a good day for anyone when it tries to outdent an executable file, for example.
+Do not and I mean NOT run this on a directory with a bunch of files that aren't plain text files. There are attempts to make it ignore those types of files but it may still find them and it will not be a good day for anyone when it tries to outdent an executable file, for example.
 
-From my small testing this *should* not happen but it very much does sometimes so just be careful to not actually mess anything up.
+From my small testing this *should* not really happen, but it very much does sometimes, so just be careful to not actually mess anything up.
 
 Also don't run this on any files of intendation based languages because it will ofcourse break them completely, and just running it again doesn't really fix it to what it was (I feel like it should but it doesn't).
+
+*Use at your own risk. I've done my best to make it safe but things can still very much break.*
