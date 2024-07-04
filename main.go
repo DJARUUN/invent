@@ -3,9 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
-	// "io"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"unicode"
 )
@@ -40,7 +40,7 @@ func find_max_indent_level(lines []string, indent_type string) int {
 	return max_indent_level
 }
 
-func do_outdent(file_path string) error {
+func do_invent(file_path string) error {
 	contents, err := os.ReadFile(file_path)
 	if err != nil {
 		return err
@@ -83,7 +83,14 @@ func do_outdent(file_path string) error {
 }
 
 func print_usage() {
-	fmt.Println("usage:\n  single file:\n    outdent --file <file>\n\n  directory:\n    outdent --dir <dir>")
+
+	fmt.Println(`usage:
+  single file:
+    invent --file <file>
+
+  directory:
+    invent --dir <dir>
+	`)
 	os.Exit(0)
 }
 
@@ -98,13 +105,33 @@ func main() {
 	case "--file":
 		file_path := args[1]
 
-		err := do_outdent(file_path)
+		err := do_invent(file_path)
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("* outdented", file_path)
+		fmt.Println("* invented", file_path)
 
 	case "--dir":
+		dir_path := args[1]
+
+		err := filepath.Walk(dir_path, func(file_path string, info os.FileInfo, err error) error {
+			if file_info, err := os.Stat(file_path); !file_info.IsDir() {
+				if err != nil {
+					return err
+				}
+
+				err := do_invent(file_path)
+				if err != nil {
+					log.Fatal(err)
+				}
+				fmt.Println("* invented", file_path)
+			}
+
+			return nil
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
 
 	default:
 		print_usage()
