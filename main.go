@@ -98,7 +98,6 @@ func do_invent(file_path string) error {
 }
 
 func print_usage() {
-
 	fmt.Println(`usage:
   single file:
     invent --file <file>
