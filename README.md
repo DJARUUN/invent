@@ -2,8 +2,8 @@
 
 #### **inv**ert + ind**ent** = **invent**
 
-A very serious formatter that does what everyone has been missing. OUTdenting your code!
-Gone are the days of code inside of code being indented two or four or whatever spaces. 
+A very serious code formatter that does what everyone has been missing. OUTdenting your code!
+Gone are the days of code inside of code being indented two or four or whatever spaces.
 
 This tool lets you do the exact opposite. It takes any file or directory you specify and inverts it's indentation. Or should I say, outdents your code!
 
